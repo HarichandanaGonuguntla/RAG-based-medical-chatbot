@@ -1,43 +1,31 @@
-# Health Assistant Application
+# RAG based medical chatbot
 
-![](https://github.com/HarichandanaGonuguntla/Cold-email-generator/blob/main/Coldemailgenerator.png)
+![](https://github.com/HarichandanaGonuguntla/RAG-based-medical-chatbot/blob/main/medibot.png)
 
-This project presents an end-to-end Generative AI application that automates the creation of personalized cold emails. Tailored for Software and AI Services companies, the Cold Email Generator streamlines the outreach process by crafting context-aware emails targeting potential clients. By integrating Meta’s LLaMA 3.1 large language model, LangChain for orchestration, ChromaDB as a vector store, and a user-friendly Streamlit interface, this tool exemplifies the practical application of open-source AI technologies in business development.
+This project is about an "Ask Medi Chatbot!", a web-based conversational AI application built using Streamlit. Its core functionality is a Retrieval-Augmented Generation (RAG) system, powered by Langchain. This system answers user queries by first retrieving relevant information from a FAISS vector store (which uses sentence-transformers/all-MiniLM-L6-v2 for embeddings), and then uses a HuggingFace Endpoint with the HuggingFaceH4/zephyr-7b-beta model to generate coherent responses. The chatbot also enhances user understanding by displaying snippets of the source documents, along with their original source and page numbers.
 
-🧠 Project Overview
-In the competitive landscape of software services, companies often seek innovative methods to connect with prospective clients. One effective strategy is to identify organizations actively hiring for roles that align with the services offered. This project automates the process by:
+🧠 **Project Overview:**
 
-Inputting a Company's Careers Page URL: Users provide the URL of a target company's careers page.
+Here’s how it works:
 
-Extracting Job Listings: The tool scrapes job postings from the provided URL, focusing on roles relevant to the user's services.
+🗂 **FAISS Vector Store:** Medical documents are embedded using a sentence-transformer model and stored in a FAISS vector database. This allows the chatbot to semantically search for the most relevant documents based on user queries.
 
-Retrieving Relevant Portfolio Links: Using ChromaDB, the system fetches pertinent portfolio pieces that match the job descriptions.
+🤖 **HuggingFace Zephyr-7B Model:** The retrieved content is passed to the HuggingFaceH4/zephyr-7b-beta model hosted via Hugging Face Inference Endpoints, which then generates a coherent and human-like response.
 
-Generating Personalized Cold Emails: Leveraging LLaMA 3.1 via LangChain, the tool crafts customized emails that highlight how the user's services align with the target company's needs.
+🔄 **LangChain Orchestration:** LangChain coordinates the retrieval and generation process and ensures that the prompt structure encourages grounded, context-relevant answers.
 
-This approach ensures that outreach efforts are timely, relevant, and tailored, increasing the likelihood of engagement from potential clients.
+🌐 **Streamlit Frontend:** Provides an interactive and responsive web-based UI for real-time conversations with the chatbot, maintaining session history.
 
-🧰 Tech Stack
-LLaMA 3.1 (70B): Meta's open-source large language model for generating coherent and contextually relevant text.
+🧰 **Tech Stack:**
 
-LangChain: Facilitates the orchestration of prompts and manages interactions between components.
+**LangChain:** Manages prompt flow, context injection, and chaining logic for RAG.
 
-ChromaDB: A vector database that stores and retrieves portfolio information based on semantic similarity.
+**FAISS:** Fast, efficient vector store for semantic document retrieval.
 
-Streamlit: Provides an intuitive web interface for users to input data and view generated emails.
+**HuggingFace Inference API:** Hosts the HuggingFaceH4/zephyr-7b-beta model for response generation.
 
-Groq API: Hosts the LLaMA 3.1 model, enabling efficient inference and scalability.
+**Streamlit:** Delivers an intuitive web interface for seamless interaction.
 
-🏗️ System Architecture
-The system comprises the following components:
+**HuggingFaceEmbeddings:** Used to embed documents into vector space using the sentence-transformers/all-MiniLM-L6-v2 model.
 
-Web Scraper: Extracts job postings from the target company's careers page.
-
-Semantic Retriever: Utilizes ChromaDB to find portfolio items that semantically match the job descriptions.
-
-Prompt Constructor: Builds prompts by combining job details and portfolio links.
-
-Language Model Interface: Sends prompts to LLaMA 3.1 via LangChain and retrieves generated emails.
-
-User Interface: Streamlit-based frontend where users input URLs and receive generated emails.
 
